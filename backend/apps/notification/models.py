@@ -3,10 +3,13 @@ from backend.configs import models
 
 
 class Notification(models.Model):
-    objects = None
-    user = models.ForeignKey()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
     message = models.TextField()
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+   def __str__(self):
+          return self.title
 
 class NotificationManager:
     @staticmethod
